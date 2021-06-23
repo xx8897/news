@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+	<div id="warp">
+		<div id="header">
+      
+		</div>
+		<div class="headings">
+		  <h2>證券介紹</h2>
+		</div>  
+		<div class="contentbox">
+			<table width="100%">
+			<tr>
+			  <th align="left"><span class="typeblock"><%= data[0].news_type %>&nbsp;&nbsp;</span>&nbsp;&nbsp;<%= data[0].news_subject %></th>
+			</tr>
+			<tr>
+			  <td><span class="newsinfo">
+				
+				&nbsp;<img src="images/user.png" alt="" width="16" height="16" />&nbsp;<%= data[0].news_editor %> 
+				<p>&nbsp;&nbsp;<%= data[0].news_content %></p>
+			  </td>
+			</tr>
+			</table>
+			<div class="topfunction">
+				<a href="/index?pageNo=<%= pageNo %>" title="返回首頁">
+				  <img src="images/home.png" alt="返回首頁" width="86" height="32" /></a>
+			</div>
+		</div>
+    <div id="footer">給對於台股有興趣卻尚未接觸的朋友</div>
+	</div>
+</body>
+</html>

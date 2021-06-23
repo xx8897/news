@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+	<div id="warp">
+		<div id="header">
+		</div>
+		<div class="headings">
+		  <h2>證券介紹</h2>
+	</div>  
+  <div class="contentbox">
+    <table width="100%">
+    <tr>
+      <th align="left">證券代碼</th>
+      <th align="left">證券名稱</th>
+      <th align="left">權重(%)</th>
+      <th align="left">股數</th>
+    </tr>
+    <% if(data.length == 0) { %>
+      <div class="status warning">
+        <p><img src="images/icon_warning.png" alt="Warning" /><span>注意</span> 目前資料庫中沒有任何資料！</p>
+      </div>
+    <% } else { %>
+      <% for(var i=0; i<data.length; i++) { %>
+       <tr class="alt">
+        <td><div class="typeblock"><%= data[i].news_type %></div></td>
+        <td><a href="/detail?id=<%= data[i].news_id %>&pageNo=<%= pageNo %>"><%= data[i].news_subject %></a></td>
+        <td><%= data[i].news_ok %></td>
+        <td><%= data[i].news_hits %></td>
+      </tr>
+     <% } %>
+    <% } %>
+  </table>
+    <div class="showpage">
+      目前頁面：<%= pageNo %> / 全部頁面：<%= totalPage %>
+    </div>
+    <div class="topfunction">
+      <% if(pageNo > 1) { %>
+        <a href="/index?pageNo=<%= (pageNo-1) %>" title="上一頁">
+          <img src="images/prevpage.png" alt="上一頁" width="64" height="24" /></a>
+      <% } %>
+      <% if(pageNo < totalPage) { %>
+        <a href="/index?pageNo=<%= (pageNo+1) %>" title="下一頁">
+          <img src="images/nextpage.png" alt="下一頁" width="64" height="24" /></a>
+      <% } %>
+    </div>
+  </div>
+  <div id="footer">給對於台股有興趣卻尚未接觸的朋友</div>
+	</div>
+</body>
+</html>

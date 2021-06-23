@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>最新消息 - 管理介面</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+	<div id="warp">
+		<div id="header">
+			<div class="toplogin">
+        <a href="/newsadd?pageNo=<%= pageNo %>" title="新增新聞"><img src="images/append.png" alt="新增新聞" width="32" height="32" /></a>
+        <a href="/logout/"><img src="images/Lockoff.png" alt="登出管理介面" width="32" height="32" /></a>
+			</div>
+			<div class="logo">
+				<img src="images/DWonline.png" width="180" height="40" alt="news" />
+			</div>
+		</div>
+		<div class="headings">
+		  <h2>最新消息 - 管理介面</h2>
+		</div>  
+    <div class="contentbox">
+      <table width="100%">
+      <tr>
+        <th align="left">kkk</th>
+        <th align="left">標題</th>
+        <th align="left">時間</th>
+        <th align="left">編輯</th>
+      </tr>
+      <% if(data.length == 0) { %>
+        <div class="status warning">
+          <p><img src="images/icon_warning.png" alt="Warning" /><span>注意</span> 目前新聞資料庫中沒有任何資料！</p>
+        </div>
+      <% } else { %>
+        <% for(var i=0; i<data.length; i++) { %>
+          <tr class="alt">
+          <td><div class="typeblock"><%= data[i].news_type %></div></td>
+          <td><a href="/newsedit?id=<%= data[i].news_id %>&pageNo=<%= pageNo %>"><%= data[i].news_subject %></a></td>
+          <td><%= (data[i].news_date).toLocaleDateString() %></td>
+          <td>
+            <a href="/newsedit?id=<%= data[i].news_id %>&pageNo=<%= pageNo %>" title="新聞編輯"> <img src="images/note_edit.png"  width="16" height="16" /></a>
+            <a href="/newsdelete?id=<%= data[i].news_id %>&pageNo=<%= pageNo %>" title="新聞刪除"><img src="images/cross.png" width="16" height="16" /></a>
+          </td>
+          </tr>
+        <% } %>
+      <% } %>
+      </table>
+      <div class="showpage">
+        目前頁面：<%= pageNo %> / 全部頁面：<%= totalPage %>
+      </div>
+      <div class="topfunction">
+        <% if(pageNo > 1) { %>
+          <a href="/adminmain?pageNo=<%= (pageNo-1) %>" title="上一頁">
+            <img src="images/prevpage.png" alt="上一頁" width="64" height="24" /></a>
+        <% } %>
+        <% if(pageNo < totalPage) { %>
+          <a href="/adminmain?pageNo=<%= (pageNo+1) %>" title="下一頁">
+            <img src="images/nextpage.png" alt="下一頁" width="64" height="24" /></a>
+        <% } %>
+      </div>
+    </div>
+    <div id="footer">&copy; Copyright 2017 eHappy Studio 新聞系統</div>
+	</div>
+</body>
+</html>
